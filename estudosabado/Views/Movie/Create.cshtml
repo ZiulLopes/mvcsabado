@@ -1,0 +1,29 @@
+﻿@model estudosabado.Models.Movie
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Cadastrar Novo Filme</h2>
+
+@using (Html.BeginForm("Create", "Movie"))
+{
+    <div class="form-group">
+        @Html.LabelFor(x => x.NameMovie)
+        @Html.TextBoxFor(x => x.NameMovie, new { @class = "form-control" }) <br />
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.RateMovie)
+        @Html.TextBoxFor(x => x.RateMovie, new { @class = "form-control" }) <br />
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.YearMovie)
+        @Html.TextBoxFor(x => x.YearMovie, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.YearMovie, "", new { @class = "text-danger" }) <br />
+    </div>
+    @Html.AntiForgeryToken()
+    <button class="btn btn-primary" type="submit">Salvar</button>
+}

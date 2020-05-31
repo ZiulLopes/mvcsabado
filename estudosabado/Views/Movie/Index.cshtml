@@ -1,0 +1,64 @@
+﻿@model List<estudosabado.Models.Movie>
+
+@{
+    ViewBag.Title = "Movies List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.Count > 0)
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Codigo</th>
+                <th scope="col">Filme</th>
+                <th scope="col">Nota</th>
+                <th scope="col">Ano</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var movie in Model)
+            {
+                <tr class="table-active">
+                    <td>@movie.Id</td>
+                    <td>@movie.NameMovie</td>
+                    <td>@movie.RateMovie</td>
+                    <td>@movie.YearMovie</td>
+                    <td>@Html.ActionLink("Editar", "Edit", "Movie", new { movieId = movie.Id }, null) | <a cls="btn-delete" data-movie-id="@movie.Id" href="#">Deletar</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <tex>Sem filmes na lista</tex>
+}
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $(".btn-delete").on("click", function () {
+                console.log($(this).data("movie-id"));
+                //bootbox.confirm({
+                //    message: "Tem certeza que quer deletar?",
+                //    buttons: {
+                //        confirm: {
+                //            label: 'Yes',
+                //            className: 'btn-success'
+                //        },
+                //        cancel: {
+                //            label: 'No',
+                //            className: 'btn-danger'
+                //        }
+                //    },
+                //    callback: function (result) {
+                //        console.log('This was logged in the callback: ' + result);
+                //    }
+                //});
+            });
+        });
+    </script>
+}
